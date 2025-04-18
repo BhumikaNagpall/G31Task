@@ -1,0 +1,143 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="text-center mb-4" id="hero">
+    <h1 class="fw-bold">How can we help?</h1>
+    
+    <input type="text" id="search-bar" class="form-control w-50 mx-auto my-3" placeholder="Search..." onkeyup="searchSections()">
+<style>
+    #popupBanner {
+        /* Green color for success */
+       padding: 10px;
+       text-align: center;
+       
+       font-size: 16px;
+       font-weight: bold;
+       position: relative;
+       z-index: 1;
+       display: block; /* Default to visible */
+       height: 50px;   /* Fixed height */
+       line-height: 30px;
+   }
+   
+   #popupBanner.hidden {
+       display: none;
+   }
+
+   body{
+    margin-top: 70px;
+   }
+</style>
+
+<section id="help-sections" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    {% for section in sections %}
+    <div class="col section-card" data-title="{{ section.title | lower }}">
+        <a href="{% url section.route %}" class="text-decoration-none text-dark">
+            <div class="card shadow-sm p-3 mb-4 bg-white rounded">
+                <div class="card-body">
+                    <h5 class="card-title">{{ section.title }}</h5>
+                    <p class="card-text">{{ section.description }}</p>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</section>
+
+<p id="no-results" class="text-center text-danger" style="display: none;">No results found.</p>
+
+
+
+<section id="contact">
+    <h1>Contact Us !</h1>
+    <p class="text-align-center">Got a question? You might find the answer in our Help page . </p>
+    <p>Otherwise , see all the ways you can speak to our teams .</p>
+    <a href="{% url 'contact' %}" class="btn btn-contact">GET IN TOUCH</a>
+    
+
+</section> 
+
+
+<section id="inspiration">
+    <h1 style="color:rgb(113, 174, 137);"><strong>Get Inspired!</strong></h1>
+    <p style="color: rgb(110, 173, 139);">Discover ideas and tips to boost your productivity.</p>
+
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="{% static 'images/focus.png' %}" alt="Stay Focused" class="card-img">
+                        <h5><strong>Stay Focused</strong></h5>
+                        <p>Tips to improve concentration.</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <h5>Keep Pushing Forward!</h5>
+                        <p>Discover focus strategies that work best for you.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="col-md-4">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="{% static 'images/produ.png' %}" alt="Boost Productivity" class="card-img">
+                        <h5><strong>Boost Productivity</strong></h5>
+                        <p>Small changes, big impact.</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <h5>You Can Achieve More!</h5>
+                        <p>Learn hacks to get things done effectively.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="col-md-4">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="{% static 'images/workfaster.png' %}" alt="Work Smarter" class="card-img">
+                        <h5><strong>Work Smarter</strong></h5>
+                        <p>Time management hacks.</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <h5>Efficiency is Key!</h5>
+                        <p>Master techniques for smarter workflows.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <button class="inspiration-btn" onclick="window.location.href='/inspiration_hub'">View Our Inspiration Hub</button>
+</section>
+
+<script>
+    function searchSections() {
+        let input = document.getElementById("search-bar").value.toLowerCase();
+        let cards = document.querySelectorAll(".section-card");
+        let found = false;
+
+        cards.forEach(card => {
+            let title = card.getAttribute("data-title");
+            if (title.includes(input)) {
+                card.style.display = "block";
+                found = true;
+            } else {
+                card.style.display = "none";
+            }
+        });
+
+        document.getElementById("no-results").style.display = found ? "none" : "block";
+    }
+</script>
+    
+
+{% endblock %}

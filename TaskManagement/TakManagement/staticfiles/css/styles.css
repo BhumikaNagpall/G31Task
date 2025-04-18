@@ -1,0 +1,345 @@
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom, #e8f5e9, #ffffff);
+    transition: background-color 0.3s ease;
+    text-shadow: 2px 2px 8px rgba(0, 128, 0, 0.2)
+}
+
+.alert {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+    position: fixed;
+    top: 10px;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    border-radius: 0;
+    transition: all 0.3 ease;
+    margin-top: 8vh;
+}
+
+.card {
+    background-color: #fff;
+    border: none;
+    transition: transform 0.8s ease, box-shadow 0.4s ease, opacity 0.8s ease, border-color 0.5s ease;
+    cursor: pointer;
+    padding-bottom: 20%;
+    opacity: 0;
+    transform: translateX(-100px) rotateY(90deg);
+    border: 2px solid transparent;
+    border-radius: 10px;
+    /* margin-bottom: 20%; */
+}
+
+.card.show {
+    opacity: 1;
+    transform: translateX(0) rotateY(0deg);
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+    font-weight: bold;
+    color: #333;
+}
+
+.card-text {
+    color: #555;
+}
+
+#hero h1 {
+    transition: color 0.4s ease;
+}
+
+#hero h1:hover {
+    color: #28a745;
+}
+
+footer {
+    background-color: #fff;
+    padding: 20px 0;
+    border-top: 2px solid #4caf50;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    padding-bottom: 5%;
+}
+
+#search-bar {
+    border-radius: 25px;
+    padding: 10px 20px;
+    border: 1px solid #4caf50;
+    transition: all 0.3s ease;
+}
+
+#search-bar:focus {
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.7);
+    outline: none;
+}
+
+
+
+.col:nth-child(1) .card { border-color: #FF6B6B; } 
+.col:nth-child(2) .card { border-color: #4ecdc4; } 
+.col:nth-child(3) .card { border-color: #FFD93D; } 
+.col:nth-child(4) .card { border-color: #1A535C; } 
+.col:nth-child(5) .card { border-color: #FF9F1C; } 
+.col:nth-child(6) .card { border-color: #5C4D7D; }
+
+
+#contact {
+    background-color: #ffffff;
+    padding: 60px 60px;
+    text-align: center;
+    margin-bottom: 70px;
+    
+    
+}
+
+#contact h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+    /* margin-top: 60px; */
+    margin-bottom: 40px;
+}
+
+#contact p {
+    color: #555;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+#contact .btn-contact {
+    background-color: #e74c3c; /* Red button like in the image */
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    border-radius: 25px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-transform: uppercase;
+}
+
+#contact .btn-contact:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+
+#help-sections{
+    margin-bottom: 80px;
+}
+/* Inspiration Card Flip Effect */
+/* General Section Styling */
+#inspiration, #contact {
+    background-color: #ffffff;
+    padding: 60px 20px;
+    text-align: center;
+    margin: 40px 20px; 
+    border: 2px solid #000; 
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Add more space between Contact Us and Inspiration */
+#contact {
+    margin-bottom: 60px;  /* Space below Contact Us */
+}
+
+/* Heading Styles */
+/* General Section Styling */
+#inspiration, #contact {
+    background-color: #ffffff;
+    padding: 60px 20px;
+    text-align: center;
+    margin: 40px 20px; 
+    border: 2px solid #000; 
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 12%;
+}
+
+/* Add more space between Contact Us and Inspiration */
+.contact {
+    margin-bottom: 80px;  /* Space below Contact Us */
+}
+
+/* Heading Styles */
+#inspiration h1, #contact h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Paragraph Styling */
+#inspiration p, #contact p {
+    color: #555;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+/* Flip Card Container */
+.flip-card {
+    background-color: transparent;
+    width: 100%;
+    max-width: 350px;
+    height: 250px;
+    perspective: 1000px;  /* 3D effect */
+    margin: 20px auto;
+}
+
+/* Inner Container for Front & Back */
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+/* Flip on Hover */
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Front & Back Side of the Card */
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    border: 3px solid transparent;
+    cursor: pointer;
+}
+
+/* Front Side Styles */
+.flip-card-front {
+    background-color: #fff;
+}
+
+/* Back Side Styles */
+.flip-card-back {
+    background-color: #f8f9fa;
+    transform: rotateY(180deg);
+    color: #333;
+}
+
+/* Colorful Borders */
+.flip-card:nth-child(1) .flip-card-front { 
+    background-color: #FFEBEE; 
+    border-color: #FF6B6B; 
+} 
+.flip-card:nth-child(2) .flip-card-front { 
+    background-color: #E8F5E9; 
+    border-color: #4CAF50; 
+} 
+.flip-card:nth-child(3) .flip-card-front { 
+    background-color: #E3F2FD; 
+    border-color: #2196F3; 
+} 
+
+/* Hover Effect */
+.flip-card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    margin-bottom: 40px;
+}
+
+#contacts{
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+/* Inspiration Button Styling */
+.inspiration-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 20px;
+}
+
+.inspiration-btn:hover {
+    background-color: #388E3C;
+    transform: scale(1.05);
+}
+
+/* Card Image Styling */
+.flip-card-front img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+#inspiration{
+    background-image: url(../static/back.png);
+}
+
+#inspiration h1{
+    color:green;
+    margin-top: 0;
+}
+
+.nav-link {
+    color: #333;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.nav-link:hover, .nav-link.active {
+    background-color: #c8e6c9;
+    border-radius: 5px;
+    color: #2e7d32;
+}
+#welcome-banner {
+    margin-top: 130px;  /* Make room below the fixed navbar */
+    margin-bottom: 50px; /* Add space before the next section */
+    padding: 30px 20px;
+    background: linear-gradient(to right, #e8f5e9, #ffffff);
+    border: 2px solid #4CAF50;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 128, 0, 0.1);
+    font-family: 'Poppins', sans-serif;
+    color: #2e7d32;
+    animation: fadeInUp 1s ease-out;
+}
+
+#welcome-banner h1 {
+    font-size: 2.4rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+#welcome-banner p {
+    font-size: 1.1rem;
+    color: #388E3C;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.subscription-box {
+    margin-top: 40px; /* Adjust if needed */
+}
+
+.spacing-custom {
+    margin-top: 60px;
+}

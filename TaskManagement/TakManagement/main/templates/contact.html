@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 0; /* Increased padding for better spacing */
+        }
+
+        .welcome-message {
+            margin-bottom: 20px; /* More space between message and card */
+            font-size: 20px;
+            font-weight: bold;
+            color: #4CAF50;
+            text-align: center;
+        }
+
+        .card {
+            background-color: #fff;
+            padding: 30px; /* Increased padding */
+            border-radius: 15px; /* More rounded corners */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
+            max-width: 500px; /* Increased card width */
+            width: 100%;
+            text-align: center;
+        }
+
+        .card h2 {
+            font-size: 28px; /* Larger heading */
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .card p {
+            margin: 10px 0; 
+            font-size: 18px; /* Slightly bigger font */
+            color: #666;
+        }
+
+        .btn-success {
+            background-color: #4CAF50;
+            border: none;
+            padding: 12px 25px; /* Bigger button */
+            margin: 15px 0;
+            cursor: pointer;
+            font-size: 16px; /* Larger button text */
+            transition: background-color 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .btn-success:hover {
+            background-color: #45a049;
+        }
+
+        a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-size: 16px; /* Slightly larger font */
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 0;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 14px;
+        }
+
+        .nav-link {
+    color: #333;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.nav-link:hover, .nav-link.active {
+    background-color: #c8e6c9;
+    border-radius: 5px;
+    color: #2e7d32;
+}
+    </style>
+</head>
+<body>
+    <header class="fixed-top">
+        <nav class="navbar sticky-top navbar-expand-lg p-1 ms-4 fixed-top me-5" style="background-color: white;">
+            <img src="{%  static 'images/WhatsApp Image 2025-02-16 at 20.58.53_22e317ee.jpg'%}" height="50px" width="50px">
+            <div class="container-fluid "><a class="navbar-brand" href="/">PeakPlanner</a>
+        <div class=" navbar-collapse justify-content-end nav-item-new">
+        <ul style="list-style: none; " class="navbar-nav nav-item">
+            
+            <li class="dropdown" style="border-radius:10px; background-color: white;">
+            <a class="nav-link" style="color:black ;" href="#" id="navbarDropdown" data-bs-toggle="dropdown">
+                    Resources ▼  <!-- Downward arrow -->
+                </a>
+                <ul class="dropdown-menu " style="background-color: white; border: 1px solid black; border-radius: 10px; ">
+                    <li><a class="dropdown-item" href="{% url 'integrations' %}" style="color: black;"><img src="{% static 'images/Screenshot 2025-02-09 162556.png' %}">Integrations</a></li>
+                    <li><a class="dropdown-item" href="{% url 'templates' %}" style="color: black;"><img src="{% static 'images/Screenshot 2025-02-09 163749.png' %}">Templates</a></li>
+                    <li><a class="dropdown-item" href="{% url 'index2' %}" style="color: black;"><img src="{% static 'images/Screenshot 2025-02-09 164105.png' %}">Help Center</a></li>
+                    <li><a class="dropdown-item" href="{% url 'inspiration_hub' %}" style="color: black;"><img src="{% static 'images/Screenshot 2025-02-09 170208.png' %}">Inspiration Hub</a></li>
+                    <!-- <li><a class="dropdown-item" href="#" style="color: black;">Digital Marketing</a></li> -->
+                </ul>
+            </li>
+            <!-- <li><a href="/"  class="nav-link" style=" text-decoration: none; color: black;" ></a></li> -->
+            <li><a href="{% url 'index3' %}" class="nav-link" style="text-decoration: none; color: black;" >Pricing</a></li>
+            <!-- <li><p>|<p></li> -->
+            <li><a href="{% url 'loginPage' %}" class="nav-link" style="text-decoration: none; color: black;">Login</a></li>
+            <a class="btn btn-outline-secondary" href="{% url 'loginPage' %}" role="button" style="background-color: rgb(81, 151, 81); color: black;">Start For Free</a></h1>
+        </ul>
+        </div>
+        </div>
+        </nav>
+    </header>
+    <div class="container">
+        <!-- <p class="welcome-message">Welcome to the Help Page! How can we assist you today?</p> -->
+
+        <div class="card" style="height: 60vh;">
+            <h2>PeakPlanner</h2>
+            <p>Have a PeakPlanner account?</p>
+            <p>Log in for quicker help</p>
+            
+            <div><a href="{% url 'loginPage' %}" class="nav-link" style="margin-top: 6vh;">Login</a>
+            <br>
+            <!-- <a href="#">Continue without logging in</a> -->
+            <a href="{% url 'continue' %}">Continue without logging in</a>
+                </div>
+        </div>
+    </div>
+
+    
+
+</body>
+</html>
+{% endblock %}

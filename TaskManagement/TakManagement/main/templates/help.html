@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help - Contact Support</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        textarea, input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .file-upload {
+            margin: 10px 0;
+        }
+        .file-upload input {
+            width: 100%;
+        }
+        .btn-send {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+        .btn-send:hover {
+            background-color: #45a049;
+        }
+        .info {
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .flash-message {
+            display: none;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .success-message {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .error-message {
+            background-color: #f44336;
+            color: white;
+        }
+        .nav-link {
+            color: #333;
+            padding: 10px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .nav-link:hover, .nav-link.active {
+            background-color: #c8e6c9;
+            border-radius: 5px;
+            color: #2e7d32;
+        }
+        #back-to-home {
+            display: none;
+            background-color: rgb(0, 128, 0);
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            text-align: center;
+            display: block;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="flashMessage" class="flash-message"></div>
+
+    <h2>Here's what you've told us so far</h2>
+
+    <div class="info">
+        <p>✔️ You’d like to contact us about <strong>your PeakPlanner account</strong></p>
+        <p>✔️ Specifically, you need help with <strong>your problem</strong></p>
+    </div>
+
+    <label for="additional-info"><strong>What else should we know?</strong></label>
+    <textarea id="additional-info" rows="5" placeholder="Please don’t share sensitive information like credit card numbers." required></textarea>
+
+    <div class="file-upload">
+        <label><strong>Attach files</strong> (Optional)</label><br>
+        <small>50 MB max file size (pdf, doc, docx, images, videos)</small>
+        <input type="file" multiple>
+    </div>
+
+    <label for="email"><strong>Email *</strong></label>
+    <input type="email" id="email" placeholder="Enter your email" required>
+
+    <button class="btn-send" onclick="sendForm()">Send</button>
+
+    <a href="/" id="back-to-home" class="nav-link">Back to Home</a>
+</div>
+
+<script>
+    function sendForm() {
+        var email = document.getElementById("email").value.trim();
+        var additionalInfo = document.getElementById("additional-info").value.trim();
+        var flashMessage = document.getElementById("flashMessage");
+
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        flashMessage.className = "flash-message";
+        flashMessage.style.display = "block";
+
+        if (email === "" && additionalInfo === "") {
+            flashMessage.textContent = "Please enter your email and provide additional information!";
+            flashMessage.classList.add("error-message");
+        } else if (email === "") {
+            flashMessage.textContent = "Enter your email first!";
+            flashMessage.classList.add("error-message");
+        } else if (!emailPattern.test(email)) {
+            flashMessage.textContent = "Please enter a valid email address!";
+            flashMessage.classList.add("error-message");
+        } else if (additionalInfo === "") {
+            flashMessage.textContent = "Please provide additional information!";
+            flashMessage.classList.add("error-message");
+        } else {
+            flashMessage.textContent = "Your request has been submitted successfully!";
+            flashMessage.classList.add("success-message");
+
+            document.getElementById("back-to-home").style.display = "inline-block";
+
+            setTimeout(function() {
+                document.getElementById("email").value = "";
+                document.getElementById("additional-info").value = "";
+            }, 1000);
+        }
+
+        setTimeout(function() {
+            flashMessage.style.display = "none";
+            flashMessage.classList.remove("success-message", "error-message");
+        }, 5000);
+    }
+</script>
+
+</body>
+</html>

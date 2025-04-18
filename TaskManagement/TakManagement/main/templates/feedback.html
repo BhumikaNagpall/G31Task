@@ -1,0 +1,51 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/feedback.css'%}>
+ 
+<img src="{% static  'images/WhatsApp Image 2025-02-16 at 20.58.53_22e317ee.jpg'%}" height="60px" width="60px" style="margin: 10px;">
+<div class="feedback-container">
+    <h1>Feedback Form</h1>
+    <form id="feedback-form" method="POST" action="{% url 'feedback' %}">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="rating">Rating (1 to 5):</label>
+        <select id="rating" name="rating" required>
+            <option value="">Select a rating</option>
+            <option value="1">1 - Poor</option>
+            <option value="2">2 - Fair</option>
+            <option value="3">3 - Good</option>
+            <option value="4">4 - Very Good</option>
+            <option value="5">5 - Excellent</option>
+        </select>
+        
+        <label for="comments">Your Comments:</label>
+        <textarea id="comments" name="comments" rows="4" required></textarea>
+        
+        <button type="submit">Submit Feedback</button>
+        <p id="thank-you-message" style="display: none; color: green; font-weight: bold; margin-top: 10px; margin-left: 40vh;">
+            Thank you for your feedback!
+        </p>
+
+        <!-- Back to Home Button (Hidden initially) -->
+        <div style="margin-top: 10px;">
+            <a href="{% url 'home'  %}" id="back-to-home" class="nav-link" 
+               style="display: none; background-color: rgb(0,128,0); color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; margin-left: 45vh;">
+                Back to Home
+            </a>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.getElementById("feedback-form").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent actual form submission
+        
+        document.getElementById("thank-you-message").style.display = "block"; // Show thank you message
+        document.getElementById("back-to-home").style.display = "inline-block"; // Show back to home button
+        
+        this.reset(); // Reset the form
+    });
+</script>

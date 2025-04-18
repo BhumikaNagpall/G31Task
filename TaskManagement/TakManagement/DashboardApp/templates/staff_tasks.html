@@ -1,0 +1,191 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Staff - Task Overview | Peak Planner</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f6f8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .wrapper {
+            display: flex;
+            height: 100vh;
+        }
+        .sidebar {
+            width: 230px;
+            background-color: #343a40;
+            color: white;
+            padding: 30px 20px;
+        }
+        .sidebar h4 {
+            margin-bottom: 40px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .sidebar ul li {
+            margin: 20px 0;
+        }
+        .sidebar ul li a, .sidebar button {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .sidebar button {
+            background: none;
+            border: none;
+            padding-left: 0;
+            cursor: pointer;
+        }
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+        .task-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+            height: 100%;
+            position: relative;
+        }
+        .task-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .priority-label {
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 13px;
+        }
+        .progress-line-container {
+            background-color: #ddd;
+            border-radius: 5px;
+            height: 10px;
+            width: 100%;
+            margin-top: 5px;
+        }
+        .progress-line {
+            height: 10px;
+            background-color: #28a745;
+            border-radius: 5px;
+        }
+        .countdown-timer {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        .task-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .task-actions form {
+            margin: 0;
+        }
+        .btn-edit {
+            padding: 6px 12px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h4>
+            <img src="{% static 'images/logo.jpg' %}" height="50px" width="50px" style="border-radius: 50%;">
+            Peak Planner
+        </h4>
+        <p class="text-light mb-4">👋 Hello, {{ request.user.name }}</p>
+        <ul>
+            <li><a href="{% url 'addtask' %}">➕ Add Task</a></li>
+            <li><a href="{% url 'taskcalender' %}">📆 Calendar</a></li>
+            <li><a href="{% url 'completed_tasks' %}">✅ Completed Tasks</a></li>
+            <li><a href="{% url 'profile' %}">👤 Profile</a></li>
+            <li>
+                <form action="{% url 'logout' %}" method="post">{% csrf_token %}
+                    <button type="submit">🚪 Logout</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h2 class="mb-4 text-center">🗂️ Staff Panel - Your Tasks</h2>
+
+        {% if messages %}
+            <div class="alert alert-info">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="row">
+            {% for task in tasks %}
+                {% if task.user == request.user %}
+                <div class="col-md-4 mb-4">
+                    <div class="task-card">
+                        <div class="countdown-timer" data-end-date="{{ task.end_date }} 23:59:59"></div>
+                        <h5 class="task-title">{{ task.task_title }}</h5>
+                        <p>{{ task.task_description }}</p>
+                        <p><strong>Priority:</strong>
+                            <span class="priority-label" style="background-color: #dc3545; color: white;">
+                                {{ task.task_priority }}
+                            </span>
+                        </p>
+                        <p><strong>Start:</strong> {{ task.start_date }}</p>
+                        <p><strong>End:</strong> {{ task.end_date }}</p>
+                        <p><strong>Progress:</strong> {{ task.progress }}%</p>
+                        <div class="progress-line-container">
+                            <div class="progress-line" data-progress="{{ task.progress|default_if_none:0|floatformat:0 }}"></div>
+                        </div>
+
+                        <div class="task-actions">
+                            <a href="{% url 'edit_task' task.id %}" class="btn btn-warning btn-edit">Edit</a>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% empty %}
+                <p class="text-center text-danger mt-5">No tasks assigned to you.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<script>
+    function updateCountdowns() {
+        const timers = document.querySelectorAll(".countdown-timer");
+        timers.forEach(timer => {
+            const endDate = new Date(timer.getAttribute("data-end-date"));
+            const now = new Date();
+            const timeDiff = endDate - now;
+
+            if (timeDiff > 0) {
+                const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+                timer.textContent = `⏳ ${days}d ${hours}h ${minutes}m ${seconds}s`;
+            } else {
+                timer.textContent = "❗ Task Overdue";
+                timer.style.color = "red";
+            }
+        });
+    }
+    setInterval(updateCountdowns, 1000);
+</script>
+</body>
+</html>

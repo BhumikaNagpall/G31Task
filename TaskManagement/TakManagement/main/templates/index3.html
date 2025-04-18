@@ -1,0 +1,314 @@
+ 
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    {% load static %}
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Pricing - To-Do App</title>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+     <style>
+
+.nav-link {
+    color: #333;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.nav-link:hover, .nav-link.active {
+    background-color: #c8e6c9;
+    border-radius: 5px;
+    color: #2e7d32;
+}
+         body {
+             background-color: #eef6f3;
+             overflow-x: hidden;
+             margin-top: 50px;
+         }
+ 
+         /* Hero Section */
+         .hero-section {
+             text-align: center;
+             padding: 80px 20px;
+             background: #fff;
+         }
+ 
+         .hero-section h1 {
+             font-size: 36px;
+             font-weight: bold;
+         }
+ 
+         .hero-section p {
+             font-size: 18px;
+             color: #666;
+         }
+ 
+         /* Attractive Pricing Section */
+         .pricing-container {
+             max-width: 1100px;
+             margin: auto;
+             padding: 50px 20px;
+             text-align: center;
+         }
+ 
+         .pricing-header {
+             font-size: 32px;
+             font-weight: bold;
+             color: #2c3e50;
+             text-transform: uppercase;
+             letter-spacing: 2px;
+             padding-bottom: 10px;
+             position: relative;
+             display: inline-block;
+         }
+ 
+         .pricing-header::after {
+             content: "";
+             display: block;
+             width: 60%;
+             height: 4px;
+             background: #2ecc71;
+             margin: 8px auto 0;
+             border-radius: 2px;
+         }
+ 
+         /* Pricing Cards */
+         .pricing-card {
+             background: white;
+             padding: 30px;
+             border: 3px solid transparent;
+             border-radius: 12px;
+             text-align: left;
+             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
+             position: relative;
+         }
+ 
+         .pricing-card:hover {
+             transform: scale(1.05);
+             box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+             border-color: #2ecc71;
+         }
+ 
+         .pricing-card h4 {
+             font-size: 24px;
+             font-weight: bold;
+             color: #34495e;
+         }
+ 
+         .pricing-card p {
+             font-size: 16px;
+             color: #666;
+         }
+ 
+         .price {
+             font-size: 26px;
+             font-weight: bold;
+             color: #2ecc71;
+             text-align: center;
+             border-bottom: 2px solid #ddd;
+             padding-bottom: 10px;
+             margin-bottom: 15px;
+         }
+ 
+         .features-list {
+             list-style: none;
+             padding-left: 0;
+             margin-top: 15px;
+         }
+ 
+         .features-list li {
+             padding: 5px 0;
+             font-size: 16px;
+             color: #555;
+         }
+ 
+         .features-list li::before {
+             content: "✔ ";
+             color: #2ecc71;
+             font-weight: bold;
+         }
+ 
+         .btn-custom {
+             width: 100%;
+             padding: 12px;
+             font-size: 16px;
+             font-weight: bold;
+             border-radius: 8px;
+             transition: all 0.3s ease-in-out;
+         }
+ 
+         .btn-custom:hover {
+             background-color: #27ae60 !important;
+             color: white !important;
+         }
+ 
+         /* Responsive Styling */
+         @media (max-width: 768px) {
+             .pricing-card {
+                 margin-bottom: 20px;
+             }
+         }
+     </style>
+ </head> 
+ <body>  
+    
+     
+     <header class="fixed-top">
+        <nav class="navbar sticky-top navbar-expand-lg p-1 ms-4 fixed-top me-5" style="background-color: white;">
+            <img src="{% static 'images/WhatsApp Image 2025-02-16 at 20.58.53_22e317ee.jpg'%}" height="50px" width="50px">
+            <div class="container-fluid "><a class="navbar-brand" href="/">PeakPlanner</a>
+        <div class=" navbar-collapse justify-content-end nav-item-new">
+        <ul style="list-style: none; " class="navbar-nav nav-item">
+            <li><a href="/" class="nav-link" style="text-decoration: none; color: black;" >Home</a></li>
+            <li class="dropdown" style="border-radius:10px; background-color: white;">
+            <a class="nav-link" style="color:black ;" href="#" id="navbarDropdown" data-bs-toggle="dropdown">
+                    Resources ▼  <!-- Downward arrow -->
+                </a>
+                <ul class="dropdown-menu " style="background-color: white; border: 1px solid black; border-radius: 10px; ">
+                    
+                    <li><a class="dropdown-item" href="{% url 'integrations' %}" style="color: black;"><img src="{% static 'images/Screenshot 2025-02-09 162556.png'%}">Integrations</a></li>
+                    <li><a class="dropdown-item" href="{% url 'templates' %}" style="color: black;"><img src="{% static 'images/Screenshot 2025-02-09 163749.png'%}">Templates</a></li>
+                    <li><a class="dropdown-item" href="{% url 'index2'%}" style="color: black;"><img src="{% static 'images/Screenshot 2025-02-09 164105.png'%}">Help Center</a></li>
+                    <li><a class="dropdown-item" href="{% url 'inspiration_hub'%}" style="color: black;"><img src="{% static 'images/Screenshot 2025-02-09 170208.png'%}">Inspiration Hub</a></li>
+                    <!-- <li><a class="dropdown-item" href="#" style="color: black;">Digital Marketing</a></li> -->
+                </ul>
+            </li>
+            <!-- <li><a href="/"  class="nav-link" style=" text-decoration: none; color: black;" ></a></li> -->
+            <li><a href="{% url 'index3' %}" class="nav-link" style="text-decoration: none; color: black;" >Pricing</a></li>
+            <!-- <li><p>|<p></li> -->
+            <li><a href="{% url 'loginPage'%}" class="nav-link" style="text-decoration: none; color: black;">Login</a></li>
+            <a class="btn btn-outline-secondary" href="{% url 'loginPage' %}" role="button" style="background-color: rgb(81, 151, 81); color: black;">Start For Free</a></h1>
+        </ul>
+        </div>
+        </div>
+        </nav>
+    </header>
+ 
+     <!-- Pricing Section -->
+     <div class="pricing-container">
+         <h2 class="pricing-header">Choose Your Plan</h2>  
+         
+         <div class="row g-4">  
+             <!-- Beginner Plan -->
+             <div class="col-md-4">
+                 <div class="pricing-card">
+                     <h4>Beginner</h4>
+                     <p>Start organizing your life for free.</p>
+                     <p class="price">₹0</p>
+                     <ul class="features-list">
+                         <li>5 personal projects</li>
+                         <li>Smart quick add</li>
+                         <li>Task reminders</li>
+                         <li>Flexible lists & board layouts</li>
+                         <li>3 filter views</li>
+                         <li>1-week activity history</li>
+                         <li>Integrate emal,calenderand more</li>
+                     </ul>
+                     <!-- <button class="btn btn-outline-primary btn-custom">Get Started</button> -->
+                 </div> 
+             </div>  
+ 
+             <!-- Pro Plan -->
+             <div class="col-md-4">
+                 <div class="pricing-card">
+                     <h4>Pro</h4>
+                     <p>Organize your work and life.</p>
+                     <p class="price">₹175 / month</p>
+                     <p><small>₹2100 billed yearly</small></p>
+                     <ul class="features-list">
+                         <li>300 personal projects</li>
+                         <li>Calendar layout</li>
+                         <li>Task duration</li>
+                         <li>Custom task reminders</li>
+                         <li>150 filter views</li>
+                         <li>Unlimited activity history</li>
+                         <li>AI Assistant</li>
+                         <li>Deadlines</li>
+                     </ul>
+                     <!-- <button class="btn btn-success btn-custom">Upgrade</button> -->
+                 </div> 
+             </div> 
+ 
+             <!-- Business Plan -->
+             <div class="col-md-4">
+                 <div class="pricing-card">
+                     <h4>Business</h4>
+                     <p>Manage your teamwork, too.</p>
+                     <p class="price">₹519.50 / month</p>
+                     <p><small>₹6234 billed yearly</small></p>
+                     <ul class="features-list">
+                         <li>Shared team workspace</li>
+                         <li>Up to 500 team projects</li>
+                         <li>Calendar layout for team work</li>
+                         <li>Granular team activity logs</li>
+                         <li>Shared templates</li>
+                         <li>1000 team members & guests</li>
+                         <li>Team roles and permissions</li>
+                         <li>Centralised team billing</li>
+                     </ul>
+                     <!-- <button class="btn btn-danger btn-custom">Try for Free</button> -->
+                 </div>
+             </div>
+         </div>
+     </div>
+     <div class="hero-section">
+        <h1>"Start your journey to better organization with our brand-new PeakPlanner App!"</h1>
+        <p>"Built for individuals and teams of all sizes to stay organized and productive!"</p>
+        <!-- <button class="btn btn-danger btn-lg">Start for Free</button>   -->
+         <!-- <p class="mt-3"><a href="#" class="text-muted">Read the plans FAQ</a></p>  -->
+      </div> 
+ 
+     <!-- Footer  -->
+     <!-- <footer class="text-center p-3 bg-dark text-white mt-4">
+         &copy; 2025 Task Management App. All Rights Reserved.
+     </footer>  -->
+     <footer>
+        <div style="background-color: rgb(70, 169, 70);">
+        <div style="text-align: center; margin-top: 10vh; height: 350px; background-color: rgb(70, 169, 70);">
+            <h1 style="margin-left: 20vh; margin-right: 20vh; padding-top: 10vh;">Gain calmness and clarity with the world’s most beloved productivity app
+                </h1>
+                
+                <a class="btn btn-outline-secondary" href="{%url 'loginPage'%}" role="button" style="color: rgb(56, 55, 55);">Start For Free</a></h1>
+        </div>
+        <hr>
+
+        <div style="display: flex; justify-content: space-between; padding: 5vh 10vw; background-color: rgb(70, 169, 70); flex-wrap: wrap;">
+            <h4 style="max-width: 300px; font-weight: 600; color: #333;">
+                Join millions of people who organize work and life with TaskChronicle.
+            </h4>
+        
+            <div>
+                <h3 style="margin-bottom: 10px;">Features</h3>
+                <ul style="list-style-type: none; padding: 0; margin: 0;">
+                    
+                    <li><a href="{% url 'index3'%}" style="text-decoration: none; color: rgb(60, 59, 59);">Pricing</a></li>
+                    <li><a href="{% url 'templates'%}" style="text-decoration: none; color: rgb(60, 59, 59);">Templates</a></li>
+                </ul> 
+            </div>
+        
+            <div>
+                <h3 style="margin-bottom: 10px;">Resources</h3>
+                <ul style="list-style-type: none; padding: 0; margin: 0;">
+                    <li><a href="{% url 'index2'%}" style="text-decoration: none; color: rgb(60, 59, 59);">Help Center</a></li>
+                    <li><a href="{% url 'integrations'%}" style="text-decoration: none; color: rgb(60, 59, 59);">Integrations</a></li>
+                </ul>
+            </div>
+        
+            <div>
+                <h3 style="margin-bottom: 10px;">Company</h3>
+                <ul style="list-style-type: none; padding: 0; margin: 0;">
+                    <li><a href="{% url 'about_us'%}" style="text-decoration: none; color: rgb(60, 59, 59);">About Us</a></li>
+                    <li><a href="{% url 'inspiration_hub' %}" style="text-decoration: none; color: rgb(60, 59, 59);">Inspiration Hub</a></li>
+                </ul>
+            </div>
+        </div>
+</div>        
+    
+    </footer>
+
+ 
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+ </body>
+ </html>
+ 

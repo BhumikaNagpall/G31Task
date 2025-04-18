@@ -1,0 +1,207 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="text-center">
+    <h2>{{title}}</h2>
+    <!-- <p>Welcome to the {{title}} section. Here you'll find everything to get started.</p> -->
+</section>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Started</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        #popupBanner {
+            /* Green color for success */
+           padding: 10px;
+           text-align: center;
+           
+           font-size: 16px;
+           font-weight: bold;
+           position: relative;
+           z-index: 1;
+           display: block; /* Default to visible */
+           height: 50px;   /* Fixed height */
+           line-height: 30px;
+       }
+       
+       #popupBanner.hidden {
+           display: none;
+       }
+
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            margin-top: 50px;
+        }
+
+        .sidebar {
+            background-color: #e9f5e9;
+            padding: 20px;
+            min-height: 100vh;
+            border-right: 2px solid #d4d4d4;
+        }
+
+        .sidebar img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .nav-link {
+            color: #333;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: #c8e6c9;
+            border-radius: 5px;
+            color: #2e7d32;
+        }
+
+        .content-area {
+            padding: 30px;
+        }
+
+        .card {
+            background-color: #fff;
+            border: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 10px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-title {
+            color: #2e7d32;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .card-text {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        h2{
+            color:#2e7d32
+        }
+    </style>
+</head>
+<body>
+    <header class="fixed-top">
+        <nav class="navbar sticky-top navbar-expand-lg p-1 ms-4 fixed-top me-5" style="background-color: white;">
+            <img src="{% static 'images/WhatsApp Image 2025-02-16 at 20.58.53_22e317ee.jpg' %}" height="50px" width="50px">
+            <div class="container-fluid "><a class="navbar-brand" href="/">PeakPlanner</a>
+        <div class=" navbar-collapse justify-content-end nav-item-new">
+        <ul style="list-style: none; " class="navbar-nav nav-item">
+            <li><a href="/" class="nav-link" style="text-decoration: none; color: black;" >Home</a></li>
+            <li class="dropdown" style="border-radius:10px; background-color: white;">
+            <a class="nav-link" style="color:black ;" href="#" id="navbarDropdown" data-bs-toggle="dropdown">
+                    Resources ▼  <!-- Downward arrow -->
+                </a>
+                <ul class="dropdown-menu " style="background-color: white; border: 1px solid black; border-radius: 10px; ">
+                    
+                    <li><a class="dropdown-item" href="{% url 'integrations' %}" style="color: black;"><img src="{% static 'images/Screenshot 2025-02-09 162556.png' %}">Integrations</a></li>
+                    <li><a class="dropdown-item" href="{% url 'templates'%}" style="color: black;"><img src="{% static 'images/Screenshot 2025-02-09 163749.png' %}">Templates</a></li>
+                    <li><a class="dropdown-item" href="{% url 'index2' %}" style="color: black;"><img src="{% static 'images/Screenshot 2025-02-09 164105.png' %}">Help Center</a></li>
+                    <li><a class="dropdown-item" href="{% url 'inspiration_hub' %}" style="color: black;"><img src="{% static 'images/Screenshot 2025-02-09 170208.png' %}">Inspiration Hub</a></li>
+                    <!-- <li><a class="dropdown-item" href="#" style="color: black;">Digital Marketing</a></li> -->
+                </ul>
+            </li>
+            <!-- <li><a href="/"  class="nav-link" style=" text-decoration: none; color: black;" ></a></li> -->
+            <li><a href="{% url 'index3'%}" class="nav-link" style="text-decoration: none; color: black;" >Pricing</a></li>
+            <!-- <li><p>|<p></li> -->
+            <li><a href="{% url 'loginPage'%}" class="nav-link" style="text-decoration: none; color: black;">Login</a></li>
+            <a class="btn btn-outline-secondary" href="{% url 'loginPage'%}" role="button" style="background-color: rgb(81, 151, 81); color: black;">Start For Free</a></h1>
+        </ul>
+        </div>
+        </div>
+        </nav>
+    </header>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3 sidebar">
+            <img src="{%static 'images/image1.png'%}" alt="Features Image" class="img-fluid mb-3"> <!-- Add your image here -->
+            <ul class="nav flex-column">
+                <li class="nav-item"><a href="{% url 'get_started'%}" class="nav-link ">GET STARTED</a></li>
+                <li class="nav-item"><a href="{% url 'features'%}" class="nav-link ">Features</a></li>
+                <li class="nav-item"><a href="{% url 'teams'%}" class="nav-link">Teams</a></li>
+                <li class="nav-item"><a href="{% url 'billing'%}" class="nav-link">Billing</a></li>
+                <li class="nav-item"><a href="{% url 'troubleshoot'%}" class="nav-link">Troubleshooting</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Integrations</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-md-9 content-area">
+            <h2 class="text-center mb-4 "><strong> Integrations</strong> </h2>
+            <div class="row g-4">
+                <!-- Cards -->
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Use Apiant</h5>
+                            <p class="card-text">Streamline your processes with Apiant, enabling powerful data connections and task automation.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Use Evernote </h5>
+                            <p class="card-text">Integrate Evernote to seamlessly capture ideas, manage notes, and sync tasks across all your devices.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Use IFTTT</h5>
+                            <p class="card-text">Connect IFTTT to automate tasks and create powerful workflows between your favorite apps effortlessly.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Use make with todolist </h5>
+                            <p class="card-text">Integrate Make to automate workflows, connect apps, and streamline your productivity with ease</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- New Cards -->
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Use n8n</h5>
+                            <p class="card-text">Automate your workflows effortlessly by integrating n8n with your tasks for seamless process management</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Use plexxy</h5>
+                            <p class="card-text">Seamlessly integrate Plexxy with your workflow to enhance productivity and streamline task management</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,21 @@
+.card {
+    border-radius: 10px;
+    transition: transform 0.2s ease-in-out;
+}
+.card:hover {
+    transform: scale(1.05);
+}
+body{
+    text-shadow: 2px 2px 8px rgba(0, 128, 0, 0.2)
+}
+.nav-link {
+    color: #333;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.nav-link:hover, .nav-link.active {
+    background-color: #c8e6c9;
+    border-radius: 5px;
+    color: #2e7d32;
+}

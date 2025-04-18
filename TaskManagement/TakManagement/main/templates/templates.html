@@ -1,0 +1,128 @@
+
+
+
+{% extends "base_exp.html" %}
+{%load static%}
+{% block title %}Templates - Task Management{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center">Explore Task Management Templates</h2>
+    
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3">
+        
+        <div class="col">
+            <div class="card shadow-sm">
+                <img src="{% static 'images/image_temp.png'%}" class="card-img-top" alt="Template 1" height="300px" width="300px">
+                <div class="card-body">
+                    <h5 class="card-title">Project Management</h5>
+                    <p class="card-text">Organize tasks, deadlines, and milestones efficiently.</p>
+                    <!-- <a href="#" class="btn btn-primary">Use Template</a> -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="col">
+            <div class="card shadow-sm">
+                <img src="{% static 'images/image2.png'%}" class="card-img-top" alt="Template 2" height="300px" width="300px">
+                <div class="card-body">
+                    <h5 class="card-title">Daily Planner</h5>
+                    <p class="card-text">Plan your day with a structured to-do list.</p>
+                    <!-- <a href="#" class="btn btn-primary">Use Template</a> -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="col">
+            <div class="card shadow-sm">
+                <img src="{% static 'images/image3.png'%}" class="card-img-top" alt="Template 3" height="300px" width="300px">
+                <div class="card-body">
+                    <h5 class="card-title">Team Collaboration</h5>
+                    <p class="card-text">Manage teamwork with shared tasks and boards.</p>
+                    <!-- <a href="#" class="btn btn-primary">Use Template</a> -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="col">
+            <div class="card shadow-sm">
+                <img src="{% static 'images/image4.png'%}" class="card-img-top" alt="Template 4" height="300px" width="300px">
+                <div class="card-body">
+                    <h5 class="card-title">Personal Goals</h5>
+                    <p class="card-text">Track personal projects and self-improvement plans.</p>
+                    <!-- <a href="#" class="btn btn-primary">Use Template</a> -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="col">
+            <div class="card shadow-sm">
+                <img src="{% static 'images/image5.png'%}" class="card-img-top" alt="Template 5" height="300px" width="300px">
+                <div class="card-body">
+                    <h5 class="card-title">Event Planning</h5>
+                    <p class="card-text">Stay on top of event logistics and timelines.</p>
+                    <!-- <a href="#" class="btn btn-primary">Use Template</a> -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="col">
+            <div class="card shadow-sm">
+                <img src="{% static 'images/image6.png'%}" class="card-img-top" alt="Template 6" height="300px" width="300px">
+                <div class="card-body">
+                    <h5 class="card-title">Study Schedule</h5>
+                    <p class="card-text">Plan your study sessions effectively.</p>
+                    <!-- <a href="#" class="btn btn-primary">Use Template</a> -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="col">
+            <div class="card shadow-sm">
+                <img src="{% static 'images/image7.png'%}" class="card-img-top" alt="Template 7" height="300px" width="300px">
+                <div class="card-body">
+                    <h5 class="card-title">Marketing Campaign</h5>
+                    <p class="card-text">Organize strategies and track performance.</p>
+                    <!-- <a href="#" class="btn btn-primary">Use Template</a> -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="col">
+            <div class="card shadow-sm">
+                <img src="{% static 'images/image8.png'%}" class="card-img-top" alt="Template 8" height="300px" width="300px">
+                <div class="card-body">
+                    <h5 class="card-title">Content Calendar</h5>
+                    <p class="card-text">Schedule and manage content releases.</p>
+                    <!-- <a href="#" class="btn btn-primary">Use Template</a> -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="col">
+            <div class="card shadow-xs">
+                <img src="{% static 'images/image9.png' %}" class="card-img-top" alt="Template 9" height="300px" width="300px">
+                <div class="card-body">
+                    <h5 class="card-title">Health & Fitness</h5>
+                    <p class="card-text">Track workouts, meals, and progress.</p>
+                    <!-- <a href="#" class="btn btn-primary">Use Template</a> -->
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="text-center mt-4">
+        <!-- <button class="btn btn-outline-dark">Load More Templates</button> -->
+    </div>
+</div>
+<div class="text-center mt-5 pt-5 style='margin-top: 120px; padding-top: 80px;' ">
+    <img src="{% static 'images/suggest.png' %}" alt="Suggest Icon" style="width: 100px; ">
+    <h3 class="mt-3">Suggest a Template</h3>
+    <p>Can't find what you're looking for? Let us know what templates you'd like to use.</p>
+    <a href="{% url 'suggest'%}" class="btn btn-danger">Suggest a template</a>
+</div>
+
+</div>
+{% endblock %}
+

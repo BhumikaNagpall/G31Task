@@ -1,0 +1,285 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspiration</title>
+    <link rel="stylesheet" href="{% static 'css/inspire_styles.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="fixed-top">
+        <nav class="navbar sticky-top navbar-expand-lg p-1 ms-4 fixed-top me-5" style="background-color: white;">
+            <img src="{% static 'images/WhatsApp Image 2025-02-16 at 20.58.53_22e317ee.jpg' %}" height="50px" width="50px">
+            <div class="container-fluid "><a class="navbar-brand" href="/">PeakPlanner</a>
+        <div class=" navbar-collapse justify-content-end nav-item-new">
+        <ul style="list-style: none; " class="navbar-nav nav-item">
+            <li><a href="/" class="nav-link" style="text-decoration: none; color: black;" >Home</a></li>
+            
+            <!-- <li><a href="/"  class="nav-link" style=" text-decoration: none; color: black;" ></a></li> -->
+            <li><a href="{% url 'index3'%}" class="nav-link" style="text-decoration: none; color: black;" >Pricing</a></li>
+            <!-- <li><p>|<p></li> -->
+            <li><a href="{% url 'loginPage'%}" class="nav-link" style="text-decoration: none; color: black;">Login</a></li>
+            <a class="btn btn-outline-secondary" href="{% url 'loginPage'%}" role="button" style="background-color: rgb(81, 151, 81); color: black;">Start For Free</a></h1>
+        </ul>
+        </div>
+        </div>
+        </nav>
+    </header>
+    
+    
+
+     <!-- Welcome Banner Section -->
+<div class="text-center mt-5" style="padding: 30px 20px; background-color: #f0f8ff; border-radius: 20px; margin: 30px auto; max-width: 800px;">
+    <h1 style="font-size: 2.5rem; font-weight: bold;">Welcome to PeakPlanner’s Inspiration Hub ✨</h1>
+    <p style="font-size: 1.2rem; color: #555;">
+        Productivity inspiration and tactical advice that's actually useful.<br>
+        Your go-to place for productivity, motivation, and growth tips!
+    </p>
+</div>
+
+    
+    <div class="subscription-section text-center mt-4 pt-6 "style="margin-top: 60px;">
+        <p><strong>Productivity inspiration and tactical advice that's actually useful.</strong></p>
+        <p><strong>Join over 160K readers who start their month with the Todoist newsletter.</strong></p>
+        
+        <form id="subscribe-form">
+            <input type="email" name="email" id="email" placeholder="Your email address" required class="p-2">
+            <button type="submit" class="btn btn-success">Subscribe</button>
+        </form>
+    
+        <!-- Hidden Thank You Message -->
+        <p id="thank-you-message" style="display: none; color: green; font-weight: bold; margin-top: 10px;">
+            Thank you for subscribing!
+        </p>
+    </div>
+
+    <!-- Navigation Links -->
+    <div class="nav-links text-center" style="margin-top:10vh ;">
+        <a href="#">Collaboration</a> | 
+        <a href="#">Goals</a> | 
+        <a href="#">Productivity</a> | 
+        <a href="#">Remote Work</a> | 
+        <a href="#">Time Management</a> | 
+        <a href="#">Todoist</a>
+     </div> 
+    
+    <!-- Inspiring Articles Section -->
+     <br><br><br><br>
+<div class="container mt-5">
+    <h2 class="text-center mb-4"><strong>Inspiring Articles</strong></h2>
+    <br><br>
+    <div class="row justify-content-center">
+
+        <!-- Article 1 -->
+        <div class="col-6 col-md-3 d-flex justify-content-center mb-4">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front text-center">
+                        <img src="{% static 'images/article1.png' %}" alt="Article 1" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">Mastering Focus</h5>
+                            <p class="card-text">Stay productive all day.</p>
+                        </div>
+                    </div>
+                    <div class="flip-card-back text-center">
+                        <h5>Deep Focus Techniques</h5>
+                        <p>Learn to block distractions and enhance concentration.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Article 2 -->
+        <div class="col-6 col-md-3 d-flex justify-content-center mb-4">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front text-center">
+                        <img src="{% static 'images/article2.png' %}" alt="Article 2" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">Goal Setting 101</h5>
+                            <p class="card-text">Define, track, and achieve your goals.</p>
+                        </div>
+                    </div>
+                    <div class="flip-card-back text-center">
+                        <h5>Goal Planning Tips</h5>
+                        <p>Break goals into actionable steps for success.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Article 3 -->
+        <div class="col-6 col-md-3 d-flex justify-content-center mb-4">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front text-center">
+                        <img src="{% static 'images/article3.png' %}" alt="Article 3" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">Remote Work Hacks</h5>
+                            <p class="card-text">Boost productivity while remote.</p>
+                        </div>
+                    </div>
+                    <div class="flip-card-back text-center">
+                        <h5>Work from Anywhere</h5>
+                        <p>Organize your workflow for remote efficiency.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Article 4 -->
+        <div class="col-6 col-md-3 d-flex justify-content-center mb-4">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front text-center">
+                        <img src="{% static 'images/article4.png' %}" alt="Article 4" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">Time Management Secrets</h5>
+                            <p class="card-text">Maximize every minute of your day.</p>
+                        </div>
+                    </div>
+                    <div class="flip-card-back text-center">
+                        <h5>Beat Procrastination</h5>
+                        <p>Simple strategies to manage your time effectively.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Article 5 -->
+        <div class="col-6 col-md-3 d-flex justify-content-center mb-4">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front text-center">
+                        <img src="{% static 'images/article5.png' %}" alt="Article 5" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">Productivity Myths</h5>
+                            <p class="card-text">Debunk common productivity mistakes.</p>
+                        </div>
+                    </div>
+                    <div class="flip-card-back text-center">
+                        <h5>What Actually Works?</h5>
+                        <p>Discover proven strategies, not just trends.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Article 6 -->
+        <div class="col-6 col-md-3 d-flex justify-content-center mb-4">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front text-center">
+                        <img src="{% static 'images/article6.png' %}" alt="Article 6" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">Collaboration Tools</h5>
+                            <p class="card-text">Boost teamwork with the right tools.</p>
+                        </div>
+                    </div>
+                    <div class="flip-card-back text-center">
+                        <h5>Work Better Together</h5>
+                        <p>Explore tools that make collaboration seamless.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Article 7 -->
+        <div class="col-6 col-md-3 d-flex justify-content-center mb-4">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front text-center">
+                        <img src="{% static 'images/article7.png' %}" alt="Article 7" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">Mindful Productivity</h5>
+                            <p class="card-text">Balance efficiency with well-being.</p>
+                        </div>
+                    </div>
+                    <div class="flip-card-back text-center">
+                        <h5>Stay Calm, Work Smart</h5>
+                        <p>Mindfulness techniques for stress-free productivity.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Article 8 -->
+        <div class="col-6 col-md-3 d-flex justify-content-center mb-4">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front text-center">
+                        <img src="{% static 'images/article8.png' %}" alt="Article 8" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">The Power of Routines</h5>
+                            <p class="card-text">Create habits that lead to success.</p>
+                        </div>
+                    </div>
+                    <div class="flip-card-back text-center">
+                        <h5>Daily Routines for Growth</h5>
+                        <p>Build lasting habits that boost productivity.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<footer>
+    <div style="background-color: rgb(70, 169, 70);">
+    <div style="text-align: center; margin-top: 20vh; height: 350px; background-color: rgb(70, 169, 70);">
+        <h1 style="margin-left: 20vh; margin-right: 20vh; padding-top: 10vh;">Gain calmness and clarity with the world’s most beloved productivity app
+            </h1>
+            
+            <a class="btn btn-outline-secondary" href="{%url 'loginPage' %}" role="button" style="color: rgb(56, 55, 55);">Start For Free</a></h1>
+    </div>
+    <hr>
+
+    <div style="display: flex; justify-content: space-between; padding: 5vh 10vw; background-color: rgb(70, 169, 70); flex-wrap: wrap;">
+        <h4 style="max-width: 300px; font-weight: 600; color: #333;">
+            Join millions of people who organize work and life with TaskChronicle.
+        </h4>
+    
+        <div>
+            <h3 style="margin-bottom: 10px;">Features</h3>
+            <ul style="list-style-type: none; padding: 0; margin: 0;">
+                
+                <li><a href="{% url 'index3' %}" style="text-decoration: none; color: rgb(60, 59, 59);">Pricing</a></li>
+                <li><a href="{% url 'templates' %}" style="text-decoration: none; color: rgb(60, 59, 59);">Templates</a></li>
+            </ul> 
+        </div>
+    
+        <div>
+            <h3 style="margin-bottom: 10px;">Resources</h3>
+            <ul style="list-style-type: none; padding: 0; margin: 0;">
+                <li><a href="{% url 'index2'%}" style="text-decoration: none; color: rgb(60, 59, 59);">Help Center</a></li>
+                <li><a href="{% url 'integrations'%}" style="text-decoration: none; color: rgb(60, 59, 59);">Integrations</a></li>
+            </ul>
+        </div>
+    
+        <div>
+            <h3 style="margin-bottom: 10px;">Company</h3>
+            <ul style="list-style-type: none; padding: 0; margin: 0;">
+                <li><a href="{% url 'about_us' %}" style="text-decoration: none; color: rgb(60, 59, 59);">About Us</a></li>
+                <li><a href="{% url 'inspiration_hub'%}" style="text-decoration: none; color: rgb(60, 59, 59);">Inspiration Hub</a></li>
+            </ul>
+        </div>
+    </div>
+</div>        
+
+</footer>
+
+<script>
+    document.getElementById("subscribe-form").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent actual form submission
+        document.getElementById("thank-you-message").style.display = "block"; // Show thank you message
+        this.reset(); // Reset the form
+    });
+</script>
+
+</body>
+ </html> 
+

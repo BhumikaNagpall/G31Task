@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Peak Planner | Add Task</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #e9f5e9;
+      color: #2f4f2f;
+    }
+
+    .wrapper {
+      display: flex;
+    }
+
+    .sidebar {
+      width: 250px;
+      height: 100vh;
+      background: linear-gradient(180deg, #3a5f3a, #2f4f2f);
+      padding: 20px;
+      color: white;
+      position: fixed;
+    }
+
+    .sidebar h4 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: bold;
+      font-size: 1.4rem;
+      color: #c8e6c9;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar ul li {
+      padding: 12px 10px;
+      cursor: pointer;
+      color: #f0f0f0;
+      border-radius: 5px;
+      transition: 0.3s ease;
+    }
+
+    .sidebar ul li:hover {
+      background: #4c774c;
+      transform: translateX(5px);
+    }
+
+    .main-content {
+      margin-left: 270px;
+      padding: 20px;
+      width: calc(100% - 270px);
+    }
+
+    .main-content h2 {
+      padding: 15px;
+      background: linear-gradient(to right, #d1e7dd, #bce1cb);
+      border-radius: 8px;
+      text-align: center;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card {
+      background: #ffffff;
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .card h4 {
+      font-weight: 700;
+      color: #2e7d32;
+    }
+
+    .form-label {
+      font-weight: 600;
+    }
+
+    .form-control,
+    .form-select {
+      border-radius: 8px;
+      box-shadow: none !important;
+    }
+
+    .btn-success {
+      background: linear-gradient(to right, #2e7d32, #1b5e20);
+      border: none;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    .btn-success:hover {
+      background: linear-gradient(to right, #43a047, #2e7d32);
+      transform: scale(1.02);
+    }
+
+    .char-count {
+      font-size: 0.9rem;
+      color: #555;
+      text-align: right;
+    }
+
+    .priority-badge {
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .priority-high {
+      background: #ff6b6b;
+      color: white;
+    }
+
+    .priority-medium {
+      background: #ffd166;
+      color: #000;
+    }
+
+    .priority-low {
+      background: #6bcB77;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="sidebar">
+      <h4><h4><img src="{% static 'images/logo.jpg' %}" height="60px" width="60px" style="border-radius: 50px;"> Peak Planner</h4>
+      <ul>
+        <li><a href="{% url 'addtask' %}" class="text-white text-decoration-none d-block">📝 Add Task</a></li>
+        <li><a href="{% url 'dashboard_page' %}" class="text-white text-decoration-none d-block">📊Dashboard</a></li>
+        <li><a href="{% url 'taskcalender' %}" class="text-white text-decoration-none d-block">📋 Calender</a>
+        </li>
+        <li><a href="{% url 'completed_tasks' %}" class="text-white text-decoration-none d-block">✅Completed</a></li>
+        <li><a href="{% url 'profile'%}"  class="text-white text-decoration-none d-block">👤 Profile</a></li>
+        
+        {% if user.is_staff %}
+        <li><a href="{% url 'task_list' %}" class="text-white text-decoration-none d-block">📝 Task List</a></li>
+        <li><a href="{% url 'admin_tasks' %}" class="text-white text-decoration-none d-block">👥 All Users</a></li>
+      {% endif %}
+    
+    <li>
+      <form action="{% url 'logout' %}" method="POST" style="margin: 0; padding: 0;">
+          {% csrf_token %}
+          <button type="submit" style="background: none; border: none; color: white; text-decoration: none; padding: 0; display: block; width: 100%; text-align: left;">
+              🚪 Logout
+          </button>
+          
+      </form>
+  </li>
+  </ul>
+    </div>
+
+    <div class="main-content">
+      <h2 class="mb-4">Add a New Task</h2>
+
+      <div class="container">
+        {% if error_msg %}
+        <div class="alert alert-danger text-center">{{ error_msg }}</div>
+        {% endif %}
+
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+
+        <div class="card p-4">
+          <form id="addTaskForm" method="POST" action="{% url 'addtask' %}">
+            {% csrf_token %}
+            <div class="mb-2">
+              <label for="taskTitle" class="form-label">Task Title</label>
+              <input type="text" class="form-control" id="taskTitle" name="task_title" placeholder="Enter task title"
+                required>
+            </div>
+
+            <div class="mb-3">
+              <label for="taskDesc" class="form-label">Task Description</label>
+              <textarea class="form-control" id="taskDesc" name="task_description" rows="3"
+                placeholder="Brief task details..."></textarea>
+              <div class="char-count" id="descCount">0 / 250</div>
+            </div>
+
+            <div class="mb-2">
+              <label for="priority" class="form-label">Priority</label>
+              <select class="form-select" id="priority" name="task_priority" required>
+                <option value="High">High</option>
+                <option value="Medium" selected>Medium</option>
+                <option value="Low">Low</option>
+              </select>
+            </div>
+            <div class="mt-2">
+              <span id="priorityBadge" class="badge bg-warning text-dark">Medium</span>
+            </div>
+
+            <div class="mb-2">
+              <label for="endDate" class="form-label">End Date</label>
+              <input type="date" class="form-control" id="endDate" name="end_date" required>
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">📌 Add Task</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Bootstrap JS (with Popper.js if needed) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+
+  <script>
+    // Description character counter
+    const descField = document.getElementById('taskDesc');
+    const descCount = document.getElementById('descCount');
+    descField.addEventListener('input', () => {
+      const length = descField.value.length;
+      descCount.textContent = `${length} / 250`;
+    });
+
+      document.addEventListener('DOMContentLoaded', function () {
+        const prioritySelect = document.getElementById('priority');
+        const priorityBadge = document.getElementById('priorityBadge');
+    
+        function updateBadge(priority) {
+          // Remove old classes
+          priorityBadge.className = 'badge';
+    
+          // Update based on priority
+          if (priority === 'High') {
+            priorityBadge.classList.add('bg-danger', 'text-light');
+            priorityBadge.textContent = 'High';
+          } else if (priority === 'Medium') {
+            priorityBadge.classList.add('bg-warning', 'text-dark');
+            priorityBadge.textContent = 'Medium';
+          } else {
+            priorityBadge.classList.add('bg-success', 'text-light');
+            priorityBadge.textContent = 'Low';
+          }
+        }
+    
+        // Initial set
+        updateBadge(prioritySelect.value);
+    
+        // On change
+        prioritySelect.addEventListener('change', function () {
+          updateBadge(this.value);
+        });
+      });
+    
+    
+  </script>
+</body>
+
+</html>

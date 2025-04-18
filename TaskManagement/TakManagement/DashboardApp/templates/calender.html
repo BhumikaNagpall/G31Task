@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peak Planner - Calendar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #e9f5e9;
+            color: #2f4f2f;
+        }
+
+        .wrapper {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background: #3a5f3a;
+            padding: 20px;
+            color: white;
+            position: fixed;
+        }
+
+        .sidebar h4 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #c8e6c9;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 10px;
+            cursor: pointer;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .sidebar ul li:hover {
+            background: #4c774c;
+            border-radius: 5px;
+        }
+
+        .main-content {
+            margin-left: 270px;
+            width: 100%;
+            padding: 10px;
+        }
+
+        .btn-success {
+            background: #2e7d32;
+            border: none;
+        }
+
+        .btn-danger {
+            background: #c62828;
+            border: none;
+        }
+
+        .btn-success:hover {
+            background: #1b5e20;
+        }
+
+        .btn-danger:hover {
+            background: #b71c1c;
+        }
+
+        /* Clock Styles */
+        #clock {
+            float: right;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2e7d32;
+            margin-top: -40px;
+            margin-right: 10px;
+        }
+
+        #calendar {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 128, 0, 0.1);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .calendar-header {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #2e7d32;
+        }
+
+        .calendar table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 10px;
+        }
+
+        .calendar th,
+        .calendar td {
+            width: 13%;
+            height: 90px;
+            vertical-align: top;
+            padding: 8px;
+            border-radius: 10px;
+            background-color: #f1f8e9;
+            color: #2e7d32;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .calendar th {
+            background-color: #388e3c;
+            color: white;
+            font-size: 1.1rem;
+            padding: 12px 0;
+        }
+
+        .calendar td.today {
+            background-color: #c8e6c9 !important;
+            border: 2px solid #2e7d32;
+        }
+
+        .task-item {
+            font-size: 0.75rem;
+            background: #a5d6a7;
+            padding: 2px 5px;
+            margin-top: 5px;
+            border-radius: 4px;
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="sidebar">
+            <h4><h4><img src="{% static 'images/logo.jpg' %}" height="60px" width="60px" style="border-radius: 50px;"> Peak Planner</h4>
+            <ul>
+                <li><a href="{% url 'addtask' %}" class="text-white text-decoration-none d-block">📝 Add Task</a></li>
+                <li><a href="{% url 'dashboard_page' %}" class="text-white text-decoration-none d-block">📊Dashboard</a></li>
+                <li><a href="{% url 'taskcalender' %}" class="text-white text-decoration-none d-block">📋 Calender</a>
+                </li>
+                <li><a href="{% url 'completed_tasks' %}" class="text-white text-decoration-none d-block">✅Completed</a></li>
+                <li><a href="{% url 'profile'%}"  class="text-white text-decoration-none d-block">👤 Profile</a></li>
+                
+                {% if user.is_staff %}
+                <li><a href="{% url 'task_list' %}" class="text-white text-decoration-none d-block">📝 Task List</a></li>
+                <li><a href="{% url 'admin_tasks' %}" class="text-white text-decoration-none d-block">👥 All Users</a></li>
+              {% endif %}
+            
+            <li>
+              <form action="{% url 'logout' %}" method="POST" style="margin: 0; padding: 0;">
+                  {% csrf_token %}
+                  <button type="submit" style="background: none; border: none; color: white; text-decoration: none; padding: 0; display: block; width: 100%; text-align: left;">
+                      🚪 Logout
+                  </button>
+                  
+              </form>
+          </li>
+          </ul>
+          </div>
+
+        <div class="main-content">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="my-3">📅 Peak Planner</h2>
+                <div id="clock" class="me-3"></div>
+            </div>
+            
+            <div class="calendar-container text-center mt-4">
+                <h5 class="calendar-header">📅 Full Calendar</h5>
+                <div id="calendar"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Real-time Clock
+        function updateClock() {
+            const now = new Date();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let seconds = now.getSeconds();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12 || 12;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+
+            const timeString = `${hours}:${minutes}:${seconds} ${ampm}`;
+            document.getElementById('clock').textContent = timeString;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock(); // Initial call
+
+        // Calendar
+        const taskEndDates = JSON.parse('{{ tasks_json|escapejs }}');
+        const calendarContainer = document.getElementById('calendar');
+        let currentDate = new Date();
+
+        function renderCalendar(date) {
+            const month = date.getMonth();
+            const year = date.getFullYear();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const firstDayIndex = new Date(year, month, 1).getDay();
+
+            let html = `
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <button class="btn btn-sm btn-outline-success" onclick="prevMonth()" aria-label="Previous Month">←</button>
+                    <strong style="font-size: 1.3rem;">${date.toLocaleString('default', { month: 'long' })} ${year}</strong>
+                    <button class="btn btn-sm btn-outline-success" onclick="nextMonth()" aria-label="Next Month">→</button>
+                </div>
+                <div class="calendar">
+                <table class="table table-borderless text-center mb-0">
+                    <thead>
+                        <tr>
+                            <th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th>
+                        </tr>
+                    </thead>
+                    <tbody><tr>`;
+
+            for (let i = 0; i < firstDayIndex; i++) {
+                html += `<td></td>`;
+            }
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayDate = new Date(year, month, day);
+                dayDate.setHours(0, 0, 0, 0);
+                const dayStr = dayDate.toISOString().split("T")[0];
+
+                const tasksForDay = taskEndDates.filter(task => {
+                    const endDate = new Date(task.date);
+                    endDate.setHours(0, 0, 0, 0);
+                    return endDate.toISOString().split("T")[0] === dayStr;
+                });
+
+                const isToday = dayDate.toDateString() === new Date().toDateString();
+                let cellContent = `<strong>${day}</strong>`;
+
+                if (tasksForDay.length > 0) {
+                    tasksForDay.forEach(task => {
+                        cellContent += `<span class="task-item" title="${task.title}">${task.title}</span>`;
+                    });
+                }
+
+                html += `<td class="${isToday ? 'today' : ''}">${cellContent}</td>`;
+
+                if ((firstDayIndex + day) % 7 === 0) {
+                    html += `</tr><tr>`;
+                }
+            }
+
+            html += `</tr></tbody></table></div>`;
+            calendarContainer.innerHTML = html;
+        }
+
+        function prevMonth() {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            renderCalendar(currentDate);
+        }
+
+        function nextMonth() {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            renderCalendar(currentDate);
+        }
+
+        renderCalendar(currentDate);
+    </script>
+</body>
+
+</html>

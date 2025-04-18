@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Page - Change Email Address</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color:rgb(132, 222, 132);
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: auto;
+        }
+
+        h2 {
+            font-weight: bold;
+            text-align: center;
+            margin: 30px 0 20px;
+        }
+
+        .card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            margin-bottom: 20px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-title {
+            font-weight: bold;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .card-text {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .read-more {
+            font-size: 14px;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+        .btn-help {
+            background-color: #d9534f;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+        }
+
+        .btn-help:hover {
+            background-color: #c9302c;
+        }
+
+        .nav-link {
+    color: #333;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.nav-link:hover, .nav-link.active {
+    background-color: #c8e6c9;
+    border-radius: 5px;
+    color: #2e7d32;
+}
+    </style>
+</head>
+<body>
+    <header class="fixed-top">
+        <nav class="navbar sticky-top navbar-expand-lg p-1 ms-4 fixed-top me-5" style="background-color: white;">
+            <img src="{% static 'images/WhatsApp Image 2025-02-16 at 20.58.53_22e317ee.jpg'%}" height="50px" width="50px">
+            <div class="container-fluid "><a class="navbar-brand" href="/">PeakPlanner</a>
+        <div class=" navbar-collapse justify-content-end nav-item-new">
+        <ul style="list-style: none; " class="navbar-nav nav-item">
+            
+            <li class="dropdown" style="border-radius:10px; background-color: white;">
+            <a class="nav-link" style="color:black ;" href="#" id="navbarDropdown" data-bs-toggle="dropdown">
+                    Resources ▼  <!-- Downward arrow -->
+                </a>
+                <ul class="dropdown-menu " style="background-color: white; border: 1px solid black; border-radius: 10px; ">
+                    <li><a class="dropdown-item" href="{% url 'integrations' %}" style="color: black;"><img src="{% static 'images/Screenshot 2025-02-09 162556.png' %}">Integrations</a></li>
+                    <li><a class="dropdown-item" href="{% url 'templates'%}" style="color: black;"><img src="{% static 'images/Screenshot 2025-02-09 163749.png' %}">Templates</a></li>
+                    <li><a class="dropdown-item" href="{% url 'index2'%}" style="color: black;"><img src="{% static 'images/Screenshot 2025-02-09 164105.png'%}">Help Center</a></li>
+                    <li><a class="dropdown-item" href="{% url 'inspiration_hub'%}" style="color: black;"><img src="{% static 'images/Screenshot 2025-02-09 170208.png'%}">Inspiration Hub</a></li>
+                    <!-- <li><a class="dropdown-item" href="#" style="color: black;">Digital Marketing</a></li> -->
+                </ul>
+            </li>
+            <!-- <li><a href="/"  class="nav-link" style=" text-decoration: none; color: black;" ></a></li> -->
+            <li><a href="{% url 'index3'%}" class="nav-link" style="text-decoration: none; color: black;" >Pricing</a></li>
+            <!-- <li><p>|<p></li> -->
+            <li><a href="{% url 'loginPage'%}" class="nav-link" style="text-decoration: none; color: black;">Login</a></li>
+            <a class="btn btn-outline-secondary" href="{%url 'loginPage'%}" role="button" style="background-color: rgb(81, 151, 81); color: black;">Start For Free</a></h1>
+        </ul>
+        </div>
+        </div>
+        </nav>
+    </header>
+    <div class="container">
+        <h2>Do these articles answer your questions ?</h2>
+
+        <div class="row">
+            <!-- Card 1 -->
+            <div class="col-md-4">
+                <div class="card">
+                    <h5 class="card-title">Change your email address</h5>
+                    <p class="card-text">You can change your email address by going to <strong>Settings &gt; Account</strong>.</p>
+                    <!-- <a href="#" class="read-more">Read more</a> -->
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="col-md-4">
+                <div class="card">
+                    <h5 class="card-title">Subscribe or unsubscribe from emails</h5>
+                    <p class="card-text">Only receive emails about what matters most by going to <strong>Settings &gt; Notifications</strong>.</p>
+                    <!-- <a href="#" class="read-more">Read more</a> -->
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col-md-4">
+                <div class="card">
+                    <h5 class="card-title">Verify your Todoist account</h5>
+                    <p class="card-text">For security reasons, when you sign up for Todoist, you'll be required to verify your email address.</p>
+                    <!-- <a href="#" class="read-more">Read more</a> -->
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="col-md-4">
+                <div class="card">
+                    <h5 class="card-title">Add a valid email with Apple/Facebook</h5>
+                    <p class="card-text">If you've signed up with Apple/Facebook without sharing your email, we may not be able to verify your account.</p>
+                    <!-- <a href="#" class="read-more">Read more</a> -->
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="col-md-4">
+                <div class="card">
+                    <h5 class="card-title">Troubleshooting email issues</h5>
+                    <p class="card-text">Having trouble receiving emails? Check spam folders, update settings, or contact support.</p>
+                    <!-- <a href="#" class="read-more">Read more</a> -->
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="col-md-4">
+                <div class="card">
+                    <h5 class="card-title">Recover a deleted account</h5>
+                    <p class="card-text">If your account was accidentally deleted, follow these steps to recover it securely.</p>
+                    <!-- <a href="#" class="read-more">Read more</a> -->
+                </div>
+            </div>
+
+            <!-- Card 7 -->
+            <div class="col-md-4">
+                <div class="card">
+                    <h5 class="card-title">Change password and security settings</h5>
+                    <p class="card-text">Keep your account secure by regularly updating your password and security preferences.</p>
+                    <!-- <a href="#" class="read-more">Read more</a> -->
+                </div>
+            </div>
+
+            <!-- Card 8 -->
+            <div class="col-md-4">
+                <div class="card">
+                    <h5 class="card-title">Manage account privacy settings</h5>
+                    <p class="card-text">Learn how to control your privacy settings to manage data sharing and account visibility.</p>
+                    <!-- <a href="#" class="read-more">Read more</a> -->
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="{% url 'help' %}" class="btn btn-help">No, I still need help.</a>
+
+
+    </div>
+
+</body>
+</html>
